@@ -3,9 +3,6 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-class IRequest extends Request {
-  user: any
-}
 
 @Injectable()
 export class JwtStartegy extends PassportStrategy(Strategy) {
@@ -17,7 +14,7 @@ export class JwtStartegy extends PassportStrategy(Strategy) {
       passReqToCallback: true,
     });
   }
-  async validate(req: IRequest, payload: any) {
+  async validate(req: any, payload: any) {
    req.user = await payload.id
     return payload;
   }
